@@ -24,8 +24,15 @@ int main(int argc, char* argv[]) {
   //Usage(argc, argv[]);
   std::string name{argv[1]};
   std::fstream file(name);
+  
+  std::string aux;
+  aux = argv[2];
+  int init = stoi(aux);
+  aux = argv[3];
+  int fin = stoi(aux);
 
   Grafo grafo1(file);
+  grafo1.Anchura(init, fin);
 
   return 0;
 }
