@@ -24,35 +24,27 @@ int main(int argc, char* argv[]) {
 
   std::string name{argv[1]};
   std::fstream file(name);
+  std::ofstream out("resultados.txt");
   
   std::string aux;
-  //aux = argv[2];
-  //int init = stoi(aux);
-  //aux = argv[3];
-  //int fin = stoi(aux);
-
-  Inf grafo;
   std::getline(file, aux);
-  int vertcs = stoi(aux);
-  std::cout << vertcs << std::endl;
-  grafo.vertices = vertcs;
-  grafo.nodes.resize(vertcs);
+  Grafo graph(stoi(aux));
   
-  for (size_t i = 0; i < vertcs;  ++i) {
-    for (size_t j = i + 1; j < vertcs; ++j) {
+  for (size_t i = 1; i <= graph.vertices;  ++i) {
+    for (size_t j = i + 1; j <= graph.vertices; ++j) {
       std::getline(file, aux);
       float cost = stof(aux);
-      if (cost > -1) grafo.nodes[i].emplace_back(j, cost);
-    }
-  }
-  
-  for (size_t i = 0; i < grafo.nodes.size(); ++i) {
-    for (size_t j = 0; j < grafo.nodes[i].size(); ++j) {
-      std::cout << i << " -> " << grafo.nodes[i][j].first << " cost = " 
-                << grafo.nodes[i][j].second << std::endl;
+      if (cost > -1) graph.AddEdge(i, j, cost); 
     }
   }
 
+  //PrintGraph(graph);
+  out << "Recorrido en amplitud\n";
+  BFS(graph, int(stoi(std::string(argv[2]))), int(stoi(std::string(argv[3]))), out);
+  out << "\nRecorrido en profundidad\n";
+  DFS(graph, int(stoi(std::string(argv[2]))), int(stoi(std::string(argv[3]))), out);
+  out << "\nModificacion de BFS\n";
+  MODBFS(graph, int(stoi(std::string(argv[2]))), int(stoi(std::string(argv[3]))), out);
   return 0;
 }
 

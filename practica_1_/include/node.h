@@ -6,9 +6,10 @@ class Node {
 public:
   // BUILDERS
   Node() : id_(), father_(NULL), cost_() {}
+  Node(int id) : id_(id) {}
   Node(int id, Node* fth, float cst) : 
     id_(id), father_(fth), cost_(cst) {}
-
+  
   // GETTERS
   int ID() const { return id_; }
   Node* GetFather() { return father_; } 

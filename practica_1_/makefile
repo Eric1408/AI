@@ -3,6 +3,7 @@ CC=g++
 CFLAGS=-std=c++17 -Wall -Wextra -Iinclude
 LDFLAGS=
 EXECUTABLE=myProgram
+RESU=resultados.txt
 
 # Listado de archivos fuente y objetos
 SRC_DIR=src
@@ -24,7 +25,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cc
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	-rm -rf $(BUILD_DIR) $(EXECUTABLE)
+	-rm -rf $(BUILD_DIR) $(EXECUTABLE) $(RESU)
 	@echo "All cleaned!"
 
 .PHONY: clean
