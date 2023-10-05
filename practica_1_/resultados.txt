@@ -1,8 +1,0 @@
-Recorrido en amplitud
-No se encontro camino
-
-Recorrido en profundidad
-No se encontró un camino entre 8 y 9
-
-Modificacion de BFS
-No se encontró un camino entre 8 y 9
