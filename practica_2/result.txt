@@ -1,0 +1,5 @@
+========== Menu ==========
+1. Imprimir el laberinto.
+2. Cambiar nodo de arranque y final.
+3. Cargar otro laberinto.
+4. Salir
