@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
       }
 
       maze.PrintNM();
-      
+
     } else if (choice == 2) {
       maze.ResetM();
       int x, y;

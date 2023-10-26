@@ -72,21 +72,17 @@ Maze::Maze(std::ifstream& input) {
       ++i;
       j = 0;
     }
-
-    // WE ADD THE HEURISTIC VALUE TO NMATRIX_ NODES
-    //for (std::vector<Node*> n : nmatrix_) {
-    //  for (Node* m : n) {
-    //    if (m->GetID() != WALL) {
-    //      m->SetHeur(Heuristic(m, end_));
-    //    }
-    //  }
-    //}
   }
 }
 
 
 // DISPLAY THE MATRIX ON SCREEN
 void Maze::PrintNM() {
+  std::cout << "n: " << x_ << std::endl;
+  std::cout << "m: " << y_ << std::endl;
+  std::cout << "S: " << *start_ << std::endl;
+  std::cout << "E: " << *end_ << std::endl;
+
   for (const std::vector<Node*>& r : nmatrix_) {
     for (Node* value : r) {
       switch (value->GetID()) {
@@ -111,6 +107,17 @@ void Maze::PrintNM() {
     }
     std::cout << std::endl;
   }
+  std::cout << "Coste: " << end_->GetCost() << std::endl;
+  std::cout << "Visitados:\n";
+  for (const Node* n : visited_) {
+    std::cout << *n << " ";
+  }
+
+  std::cout << "\nGenerados:\n";
+  for (const Node* m : generated_) {
+    std::cout << *m << " ";
+  }
+  std::cout << std::endl;
 }
 
 // Method to get node neighbors
@@ -178,6 +185,8 @@ bool Maze::AStar(bool isManhattan) {
     nodesInOpenSet.erase(current);
 
     if (current == end_) {
+      visited_ = closedSet;
+      generated_ = nodesInOpenSet;
       return true;
     }
 
